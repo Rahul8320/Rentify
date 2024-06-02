@@ -1,6 +1,7 @@
+import { Outlet } from "react-router-dom";
 import { Header } from "./Components/Custom/Header";
 import { Toaster } from "./Components/ui/toaster";
-import HomePage from "./Pages/HomePage";
+import Footer from "./Components/Custom/Footer";
 
 function App() {
   return (
@@ -9,11 +10,11 @@ function App() {
       <Header />
       {/* Main */}
       <main>
-        <HomePage />
+        <Outlet />
       </main>
-      {/* Footer */}
-      <footer>Made with 💖 by Rahul Dey</footer>
       <Toaster />
+      {/* Footer */}
+      <Footer />
     </>
   );
 }

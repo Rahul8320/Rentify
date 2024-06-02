@@ -10,8 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
-import { Dialog, DialogTrigger } from "./dialog";
-import DetailsPage from "@/Pages/DetailsPage";
+import { useNavigate } from "react-router-dom";
 
 export const columns: ColumnDef<IspModel>[] = [
   {
@@ -80,41 +79,43 @@ export const columns: ColumnDef<IspModel>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const isp = row.original;
+      const property = row.original;
+      const navigate = useNavigate();
 
       return (
         <div className="text-right">
-          <Dialog>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="h-8 w-8 p-0">
-                  <span className="sr-only">Open menu</span>
-                  <MoreHorizontal className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DialogTrigger asChild>
-                  <DropdownMenuItem>View details</DropdownMenuItem>
-                </DialogTrigger>
-                <DropdownMenuItem onClick={async () => await handleShare(isp)}>
-                  Share
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <DetailsPage id={isp.id} />
-          </Dialog>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                onClick={() => navigate(`/property-details/${property.id}`)}
+              >
+                View details
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={async () => await handleShare(property)}
+              >
+                Share
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       );
     },
   },
 ];
 
-const handleShare = async (isp: IspModel) => {
+const handleShare = async (property: IspModel) => {
   const shareData = {
-    title: `Check out this Place: ${isp.place}`,
-    text: `Place: ${isp.place}\nPrice: ${isp.price}\n`,
+    title: `Check out this Place: ${property.place}`,
+    text: `Place: ${property.place}\nPrice: ${property.price}\n`,
     url: window.location.href,
   };
 

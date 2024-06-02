@@ -2,3 +2,5 @@
 */obj/
 Rentity.Api/Logs
 Rentity.Api/Rantify.db
+Rentity.Api/Rantify.db-shm
+Rentity.Api/Rantify.db-wal
