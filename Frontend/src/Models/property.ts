@@ -1,7 +1,7 @@
-import { IspModel } from "./ispModel";
+import { PropertyModel } from "./propertyModel";
 
-// Defins the ISP class
-export class ISP {
+// Defins the Property class
+export class Property {
   constructor(
     public id: string,
     public place: string,
@@ -16,9 +16,9 @@ export class ISP {
     public lastUpdated: string
   ) {}
 
-  // Convert ISP to IspModel
-  toModel(): IspModel {
-    return new IspModel(
+  // Convert Property to PropertyModel
+  toModel(): PropertyModel {
+    return new PropertyModel(
       this.id,
       this.place,
       this.noOfBedroom,
@@ -33,8 +33,8 @@ export class ISP {
     );
   }
 
-  // Static method to convert a list of ISP to a list of ISPModel
-  static toModelList(isps: ISP[]): IspModel[] {
-    return isps.map((isp: ISP) => isp.toModel());
+  // Static method to convert a list of Property to a list of PropertyModel
+  static toModelList(properties: Property[]): PropertyModel[] {
+    return properties.map((property: Property) => property.toModel());
   }
 }

@@ -1,29 +1,29 @@
 import { useEffect, useState } from "react";
 import { columns } from "@/Components/ui/columns";
 import { DataTable } from "@/Components/ui/data-table";
-import { IspModel } from "@/Models/ispModel";
-import ispService from "@/Services/property.service";
+import propertyService from "@/Services/property.service";
 import { useToast } from "@/Components/ui/use-toast";
 import { ToastAction } from "@/Components/ui/toast";
 import { Loading } from "@/Components/Custom/Loading";
-import { ISP } from "@/Models/isp";
 import { useDispatch } from "react-redux";
-import { updateApiHits, updateIsps } from "@/store/ispSlice";
+import { updateApiHits, updateProperties } from "@/store/propertySlice";
+import { PropertyModel } from "@/Models/propertyModel";
+import { Property } from "@/Models/property";
 
 const HomePage = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [isps, setIsps] = useState<IspModel[]>([]);
+  const [properties, setProperties] = useState<PropertyModel[]>([]);
 
   const { toast } = useToast();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    ispService
-      .getAllIsp()
-      .then((data: ISP[]) => {
-        const ispModels = ISP.toModelList(data);
-        setIsps(ispModels);
-        dispatch(updateIsps(data.length));
+    propertyService
+      .getAllProperties()
+      .then((data: Property[]) => {
+        const propertyModel = Property.toModelList(data);
+        setProperties(propertyModel);
+        dispatch(updateProperties(data.length));
         dispatch(updateApiHits());
         setLoading(false);
       })
@@ -45,7 +45,7 @@ const HomePage = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <DataTable columns={columns} data={isps} />
+      <DataTable columns={columns} data={properties} />
     </div>
   );
 };

@@ -1,44 +1,44 @@
 import axios from "axios";
 import appConfig from "@/config/appConfig";
-import { ISP } from "@/Models/isp";
+import { Property } from "@/Models/property";
 
 class PropertyService {
   apiUrl = appConfig.BaseUrl + "/property";
 
-  // get all isp details
-  async getAllIsp(): Promise<ISP[]> {
+  // get all property details
+  async getAllProperties(): Promise<Property[]> {
     try {
       const result = await axios.get(this.apiUrl);
       return result.data.map(
-        (isp: ISP) =>
-          new ISP(
-            isp.id,
-            isp.place,
-            isp.noOfBedroom,
-            isp.noOfBathroom,
-            isp.sizeinSqft,
-            isp.nearbySchool,
-            isp.nearbyCollege,
-            isp.nearbyHospital,
-            isp.description,
-            isp.price,
-            isp.lastUpdated
+        (property: Property) =>
+          new Property(
+            property.id,
+            property.place,
+            property.noOfBedroom,
+            property.noOfBathroom,
+            property.sizeinSqft,
+            property.nearbySchool,
+            property.nearbyCollege,
+            property.nearbyHospital,
+            property.description,
+            property.price,
+            property.lastUpdated
           )
       );
     } catch (error) {
-      console.error(`IspService :: getAllIsp :: Error: ${error}`);
-      throw new Error("Failed to fatch isp data!");
+      console.error(`PropertyService :: getAllProperties :: Error: ${error}`);
+      throw new Error("Failed to fatch property data!");
     }
   }
 
-  // get isp details
-  async getIspDetails(id: string): Promise<ISP> {
+  // get property details
+  async getPropertyDetails(id: string): Promise<Property> {
     try {
       const result = await axios.get(`${this.apiUrl}/${id}`);
       return result.data;
     } catch (error) {
-      console.error(`IspService :: getIspDetails :: Error: ${error}`);
-      throw new Error("Failed to fatch isp data!");
+      console.error(`PropertyService :: getPropertyDetails :: Error: ${error}`);
+      throw new Error("Failed to fatch property data!");
     }
   }
 }

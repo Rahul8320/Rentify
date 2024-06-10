@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "@/Components/ui/button";
-import { ISP } from "@/Models/isp";
 import { Loading } from "@/Components/Custom/Loading";
-import ispService from "@/Services/property.service";
+import propertyService from "@/Services/property.service";
 import { useToast } from "@/Components/ui/use-toast";
-import { updateApiHits } from "@/store/ispSlice";
+import { updateApiHits } from "@/store/propertySlice";
 import { ToastAction } from "@/Components/ui/toast";
 import { useParams } from "react-router-dom";
 import {
@@ -16,9 +15,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/Components/ui/card";
+import { Property } from "@/Models/property";
 
 const DetailsPage = () => {
-  const [ispDetails, setIspDetails] = useState<ISP | null>(null);
+  const [propertyDetails, setPropertyDetails] = useState<Property | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   const { toast } = useToast();
@@ -28,10 +28,10 @@ const DetailsPage = () => {
   console.log(id);
 
   useEffect(() => {
-    ispService
-      .getIspDetails(id!)
-      .then((data: ISP) => {
-        setIspDetails(data);
+    propertyService
+      .getPropertyDetails(id!)
+      .then((data: Property) => {
+        setPropertyDetails(data);
         dispatch(updateApiHits());
         setLoading(false);
       })
@@ -51,12 +51,12 @@ const DetailsPage = () => {
     return <Loading />;
   }
 
-  if (loading === false && ispDetails === null) {
+  if (loading === false && propertyDetails === null) {
     return (
       <Card className="sm:max-w-[425px]">
         <CardHeader>
-          <CardTitle>ISP Details</CardTitle>
-          <CardDescription>We don't find any isp details.</CardDescription>
+          <CardTitle>Property Details</CardTitle>
+          <CardDescription>We don't find any property details.</CardDescription>
         </CardHeader>
       </Card>
     );
@@ -72,12 +72,15 @@ const DetailsPage = () => {
       <CardContent>
         <div className="flex items-center p-2">
           <div className="w-1/3 mx-10 bg-green-50 rounded-xl py-1">
-            <img src="https://picsum.photos/200/300" alt={ispDetails?.place} />
+            <img
+              src="https://picsum.photos/200/300"
+              alt={propertyDetails?.place}
+            />
           </div>
           <div className="w-2/3 bg-gray-200 rounded-lg border-2 border-gray-500 shadow-md">
             <div className="bg-gray-500 py-1 rounded-md">
               <h1 className="text-3xl font-semibold text-white text-center">
-                {ispDetails?.place}
+                {propertyDetails?.place}
               </h1>
             </div>
             <div className="px-5 py-2">
@@ -85,7 +88,7 @@ const DetailsPage = () => {
                 <span className="mx-5">
                   <i className="fa fa-wifi"></i>
                 </span>
-                Price: {ispDetails?.price}
+                Price: {propertyDetails?.price}
               </p>
             </div>
           </div>

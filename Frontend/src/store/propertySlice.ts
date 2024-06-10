@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface IspState {
-  ispsCount: number;
+export interface PropertyState {
+  propertyCount: number;
   apiHits: number;
   isLogin: boolean;
 }
@@ -11,18 +11,18 @@ interface UpdateStateActionPayload {
   type: string;
 }
 
-const initialState: IspState = {
-  ispsCount: 0,
+const initialState: PropertyState = {
+  propertyCount: 0,
   apiHits: 0,
   isLogin: true,
 };
 
-export const ispSlice = createSlice({
-  name: "isp",
+export const propertySlice = createSlice({
+  name: "property",
   initialState,
   reducers: {
-    updateIsps: (state, action: UpdateStateActionPayload) => {
-      state.ispsCount = action.payload;
+    updateProperties: (state, action: UpdateStateActionPayload) => {
+      state.propertyCount = action.payload;
     },
     updateApiHits: (state) => {
       state.apiHits = state.apiHits + 1;
@@ -33,6 +33,6 @@ export const ispSlice = createSlice({
   },
 });
 
-export const { updateIsps, updateApiHits } = ispSlice.actions;
+export const { updateProperties, updateApiHits } = propertySlice.actions;
 
-export default ispSlice.reducer;
+export default propertySlice.reducer;

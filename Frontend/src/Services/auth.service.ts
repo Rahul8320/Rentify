@@ -9,8 +9,7 @@ class AuthService {
       const result = await axios.post(this.apiUrl + "/login", loginData);
       return result.data;
     } catch (error) {
-      console.error(`AuthService :: getAllIsp :: Error: ${error}`);
-      throw new Error("Failed to fatch isp data!");
+      console.error(`AuthService :: login :: Error: ${error}`);
     }
   }
 
@@ -19,8 +18,7 @@ class AuthService {
       const result = await axios.post(this.apiUrl + "/register", registerData);
       return result.data;
     } catch (error) {
-      console.error(`AuthService :: getAllIsp :: Error: ${error}`);
-      throw new Error("Failed to fatch isp data!");
+      console.error(`AuthService :: register :: Error: ${error}`);
     }
   }
 
@@ -33,8 +31,7 @@ class AuthService {
       const result = await axios.get(this.apiUrl + "/verify", config);
       return result.data;
     } catch (error) {
-      console.error(`AuthService :: getAllIsp :: Error: ${error}`);
-      throw new Error("Failed to fatch isp data!");
+      console.error(`AuthService :: verify :: Error: ${error}`);
     }
   }
 }

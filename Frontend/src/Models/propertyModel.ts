@@ -1,4 +1,4 @@
-export class IspModel {
+export class PropertyModel {
   constructor(
     public id: string,
     public place: string,

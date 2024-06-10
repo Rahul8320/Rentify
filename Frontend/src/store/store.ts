@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ispReducer from "./ispSlice";
+import propertyReducer from "./propertySlice";
 
 const store = configureStore({
-  reducer: ispReducer,
+  reducer: propertyReducer,
 });
 
 export default store;
