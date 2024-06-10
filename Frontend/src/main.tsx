@@ -7,6 +7,8 @@ import store from "./store/store.ts";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./Pages/HomePage.tsx";
 import DetailsPage from "./Pages/DetailsPage.tsx";
+import LoginPage from "./Pages/LoginPage.tsx";
+import RegisterPage from "./Pages/RegisterPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
         element: <DetailsPage />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
   },
 ]);
 

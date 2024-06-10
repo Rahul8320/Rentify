@@ -1,15 +1,17 @@
-import appConfig from "@/config/appConfig";
 import axios from "axios";
+import appConfig from "@/config/appConfig";
+import { AuthToken, AuthUser, LoginRequest } from "@/Models/auth";
 
 class AuthService {
   apiUrl = appConfig.BaseUrl + "/auth";
 
-  async login(loginData: any) {
+  async login(loginData: LoginRequest): Promise<AuthToken> {
     try {
       const result = await axios.post(this.apiUrl + "/login", loginData);
       return result.data;
     } catch (error) {
       console.error(`AuthService :: login :: Error: ${error}`);
+      throw new Error("Login Failed");
     }
   }
 
@@ -19,10 +21,11 @@ class AuthService {
       return result.data;
     } catch (error) {
       console.error(`AuthService :: register :: Error: ${error}`);
+      throw error;
     }
   }
 
-  async verify(token: any) {
+  async verify(token: string): Promise<AuthUser> {
     try {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
@@ -32,6 +35,7 @@ class AuthService {
       return result.data;
     } catch (error) {
       console.error(`AuthService :: verify :: Error: ${error}`);
+      throw error;
     }
   }
 }

@@ -1,12 +1,14 @@
 import { useSelector } from "react-redux";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { PropertyState } from "@/store/propertySlice";
+import { RootState } from "@/store/propertySlice";
 
 export const Header = () => {
-  const totalPropertyCount = useSelector(
-    (state: PropertyState) => state.propertyCount
+  const totalPropertyCount = useSelector<RootState, number>(
+    (state) => state.property.propertyCount
   );
-  const totalApiHits = useSelector((state: PropertyState) => state.apiHits);
+  const totalApiHits = useSelector<RootState, number>(
+    (state) => state.property.apiHits
+  );
 
   return (
     <div className="max-w-7xl mx-auto bg-gray-400 h-16 my-2 rounded-lg px-5 flex items-center">
