@@ -2,7 +2,7 @@ export interface AuthUser {
   userName: string;
   email: string;
   userId: string;
-  role: string;
+  role: AuthRole;
 }
 
 export interface AuthToken {
@@ -13,4 +13,9 @@ export interface AuthToken {
 export interface LoginRequest {
   username: string;
   password: string;
+}
+
+export enum AuthRole {
+  Seller = "Seller",
+  Buyer = "Buyer",
 }

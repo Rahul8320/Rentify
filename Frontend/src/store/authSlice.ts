@@ -13,10 +13,10 @@ export interface AuthState {
 const initialState: AuthState = {
   user: JSON.parse(localStorage.getItem(LocalStorageConfig.userKey)!) || null,
   token: localStorage.getItem(LocalStorageConfig.tokenKey) || null,
-  expiration: localStorage.getItem(LocalStorageConfig.exiprationKey) || null,
+  expiration: localStorage.getItem(LocalStorageConfig.expirationKey) || null,
   isValidToken: isTokenValid(
     localStorage.getItem(LocalStorageConfig.tokenKey),
-    localStorage.getItem(LocalStorageConfig.exiprationKey)
+    localStorage.getItem(LocalStorageConfig.expirationKey)
   ),
 };
 
@@ -30,14 +30,14 @@ export const authSlice = createSlice({
       state.expiration = expiration;
       state.isValidToken = isTokenValid(token, expiration);
       localStorage.setItem(LocalStorageConfig.tokenKey, token);
-      localStorage.setItem(LocalStorageConfig.exiprationKey, expiration);
+      localStorage.setItem(LocalStorageConfig.expirationKey, expiration);
     },
     logout: (state) => {
       state.token = null;
       state.expiration = null;
       state.isValidToken = false;
       localStorage.removeItem(LocalStorageConfig.tokenKey);
-      localStorage.removeItem(LocalStorageConfig.exiprationKey);
+      localStorage.removeItem(LocalStorageConfig.expirationKey);
     },
     verify: (state, action: { payload: AuthUser }) => {
       state.user = action.payload;

@@ -25,8 +25,6 @@ const DetailsPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  console.log(id);
-
   useEffect(() => {
     propertyService
       .getPropertyDetails(id!)

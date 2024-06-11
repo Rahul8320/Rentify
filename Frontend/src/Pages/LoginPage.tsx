@@ -87,7 +87,7 @@ const LoginPage = () => {
         className="h-12 w-12 mx-auto rounded-lg"
       />
       <h2 className="text-3xl text-center my-2 font-semibold text-slate-700">
-        Login to Rentify
+        Login to Rantify
       </h2>
       <Form {...loginForm}>
         <form onSubmit={loginForm.handleSubmit(onSubmit)} className="space-y-4">
@@ -120,7 +120,7 @@ const LoginPage = () => {
           <div className="text-center">
             <Button
               type="submit"
-              variant="ghost"
+              variant="outline"
               disabled={!loginForm.formState.isValid}
             >
               Login
