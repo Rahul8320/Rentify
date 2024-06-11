@@ -1,6 +1,10 @@
 */bin/
 */obj/
 Rentity.Api/Logs
-Rentity.Api/Rantify.db
-Rentity.Api/Rantify.db-shm
-Rentity.Api/Rantify.db-wal
+Rentity.Api/Rentify.db
+Rentity.Api/Rentify.db-shm
+Rentity.Api/Rentify.db-wal
+
+Rentity.Api/Rentify-dev.db
+Rentity.Api/Rentify-dev.db-shm
+Rentity.Api/Rentify-dev.db-wal
